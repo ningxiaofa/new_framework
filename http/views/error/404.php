@@ -16,7 +16,7 @@
 <body>
     <div class="main">
         404 Not Found
-        <?php if(IS_DEBUG){ echo "<br/>Err detail: " . $errMsg; }?>
+        <?php if(DEBUG){ echo "<br/>Err detail: " . $errMsg; }?>
     </div>
 </body>
 
