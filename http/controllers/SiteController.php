@@ -1,5 +1,7 @@
 <?php
 
+namespace http\controller;
+
 //urls
 // http://localhost:7200
 // http://localhost:7200/index.php?index/list?type=1

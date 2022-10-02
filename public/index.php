@@ -15,13 +15,12 @@
     // 3.3 引入公共函数
 
 defined('APP') or define('APP', dirname(__DIR__));
+defined('HTTP') or define('HTTP', APP . DIRECTORY_SEPARATOR . 'http');
 defined('IS_DEBUG') or define('IS_DEBUG', true);  // FYI Dev: true, Non-dev: false
 
-spl_autoload_register(function($class){
-    $kernel = $class . '.php';
-    if(is_file($kernel)){
-        include $kernel;
-    }
-});
+require dirname(__DIR__) . '/common/functions.php';
 
-Kernel::run();
+require dirname(__DIR__) . '/core/Kernel.php';
+spl_autoload_register('\core\Kernel::load');
+
+\core\Kernel::run();

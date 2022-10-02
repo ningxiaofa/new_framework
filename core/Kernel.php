@@ -1,7 +1,11 @@
 <?php
 
+namespace core;
+
 class Kernel
 {
+    static public $classMap = [];
+
     // route && mvc
     static public function run()
     {
@@ -22,15 +26,33 @@ class Kernel
             }
         }
         
-        $controllerClass = $controller . 'Controller';
+        $controller = ucfirst($controller) . 'Controller';
+        $controllerClass = '\http\controllers\\' . $controller;
         $actionName = 'action' . ucfirst($action);
         
         try {
             (new $controllerClass)->$actionName();
         } catch (\Throwable $th) {
             $errMsg = $th->getMessage();
-            require_once dirname(__DIR__) . '/views/error/404.php';
+            require_once dirname(__DIR__) . '/http/views/error/404.php';
             exit(1);
+        }
+    }
+
+    static function load($class)
+    {
+        if (isset(self::$classMap[$class])) {
+            return true;
+        } else {
+            $class = serializePath('/' . $class); // e.g.: core\lib\Route --> /core/lib/Route
+            $file = serializePath(APP . $class . '.php', '\\', '/'); 
+            if (is_file($file)) {
+                include $file;
+                self::$classMap[$class] = $class;
+            } else {
+                return false;
+            }
+            return true;
         }
     }
 }
