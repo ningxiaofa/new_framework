@@ -1,6 +1,6 @@
 <?php
 
-class Kenel
+class Kernel
 {
     // route && mvc
     static public function run()

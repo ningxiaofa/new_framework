@@ -18,10 +18,10 @@ defined('APP') or define('APP', dirname(__DIR__));
 defined('IS_DEBUG') or define('IS_DEBUG', true);  // FYI Dev: true, Non-dev: false
 
 spl_autoload_register(function($class){
-    $kenel = $class . '.php';
-    if(is_file($kenel)){
-        include $kenel;
+    $kernel = $class . '.php';
+    if(is_file($kernel)){
+        include $kernel;
     }
 });
 
-Kenel::run();
+Kernel::run();
