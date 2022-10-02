@@ -16,7 +16,7 @@
 <body>
     <div class="main">
         500 Server Error
-        <?php if(IS_DEBUG){ echo "<br/>Err detail: " . $errMsg; }?>
+        <?php if(DEBUG){ echo "<br/>Err detail: " . $errMsg; }?>
     </div>
 </body>
 
